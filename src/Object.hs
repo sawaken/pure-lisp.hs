@@ -12,7 +12,8 @@ type Params = [Obj]
 type Body = (Obj, [Obj])
 
 data Obj = Number Int
-  | T
+  | Bool Bool
+  | String String
   | Nil
   | Lambda Env Params Body
   | Symbol String
@@ -24,7 +25,7 @@ atom (Cons _ _) = Nil
 atom _ = T
 
 eq :: Obj -> Obj -> Obj
-eq x y = if x == y then T else Nil
+eq x y = if x == y then Bool True else Nil
 
 car :: Obj -> Obj
 car (Cons x _) = x
