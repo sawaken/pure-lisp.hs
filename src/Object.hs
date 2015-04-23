@@ -22,7 +22,7 @@ data Obj = Number Int
 
 atom :: Obj -> Obj
 atom (Cons _ _) = Nil
-atom _ = T
+atom _ = Bool True
 
 eq :: Obj -> Obj -> Obj
 eq x y = if x == y then Bool True else Nil

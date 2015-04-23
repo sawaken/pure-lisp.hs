@@ -1,3 +1,5 @@
+{-# LANGUAGE TypeSynonymInstances #-}
+
 module Parser(topLevel) where
 
 type Parser a = String -> Maybe (a, String)
@@ -8,13 +10,8 @@ instance Monad Parser where
 
   (>>=) :: Parser a -> (a -> Parser b) -> Parser b
   p >>= f = (\inp-> case p inp of
-                      Just (x, rest) -> f x
-                      Nothing -> Nothing
-
-  Nothing >>= f = Nothing
-  (Just x) >>= f = f x
-  
-
+                      Just (x, rest) -> f x rest
+                      Nothing -> Nothing)
 
 topLevel :: Int
 topLevel = 1
